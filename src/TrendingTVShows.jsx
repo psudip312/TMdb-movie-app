@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './TrendingTVShows.css'
 import Card from './components/Card';
 import { useNavigate } from 'react-router-dom';
 function TrendingTVShows({ sortOrder, searchQuery }) {
@@ -44,13 +45,14 @@ function TrendingTVShows({ sortOrder, searchQuery }) {
   }, [searchQuery, shows]);
   return (
     <div>
-      <h1>Trending TV Shows</h1>
-      <div className='Allcard'>
-        {filteredShows?.map((show, index) => (
-          <Card key={index} movie={show} />
-        ))}
-      </div>
+    <h1 className="heading">Trending TV Shows</h1>
+    <div className="card-container">
+      {filteredShows?.map((show, index) => (
+        <Card key={index} movie={show} />
+      ))}
     </div>
+  </div>
+  
   );
 }
 export default TrendingTVShows;

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import TrendingTVShows from "./TrendingTVShows";
+import Navbar from "./Navbar";
+import './Home.css'
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+
 const Home
  = () => {
 const [sortOrder, setSortOrder] = useState();
@@ -14,18 +18,30 @@ const toggleSortDropdown = () => {
 };
   return (
     <div>
-  <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-      <div>
-      <button onClick={toggleSortDropdown}>
-        Sort Order:
-      </button>
-      {isSortDropdownOpen && (
-        <div>
-          <button onClick={() => handleSortOrder("asc")}>Ascending</button>
-          <button onClick={() => handleSortOrder("desc")}>Descending</button>
-        </div>
-      )}
+    <Navbar/>
+    <div className="search-container">
+    <input
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search for movies or TV shows"
+      className="search-input"
+    />
+  </div>
+  
+  
+  <div className="sort-container">
+  <button onClick={toggleSortDropdown} className="sort-button">
+    Sort Order:
+  </button>
+  {isSortDropdownOpen && (
+    <div className="sort-dropdown">
+      <button onClick={() => handleSortOrder("asc")} className="sort-option">Ascending</button>
+      <button onClick={() => handleSortOrder("desc")} className="sort-option">Descending</button>
     </div>
+  )}
+</div>
+
        <TrendingTVShows sortOrder={sortOrder}  searchQuery={searchQuery} />
     </div>
   );
