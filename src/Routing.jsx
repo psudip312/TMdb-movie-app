@@ -7,11 +7,11 @@ const Routing = () => {
   return (
     <Routes>
     <Route  path="/" element={<Home/>} />
-    <Route  path="/Showsdetails" element={<Showdetails/>} />
+    <Route  path="/Showsdetails/:id" element={<Showdetails/>} />
 
 
   </Routes>
   )
 }
 
-export default Routing
+export default Routing  

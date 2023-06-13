@@ -1,45 +1,109 @@
+/* Card.css */
+.cardd {
+  width: 250px;
+  height: 350px;
+  perspective: 1000px;
+  margin: 20px;
+}
 
 .flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: 450px;
-    perspective: 1000px;
-  }
-  
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-  .cardd{
-    display:flex;
-    gap:20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
 
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  .flip-card-front {
-    background-color: #bbb;
-    color: black;
-  }
-  
-  .flip-card-back {
-    background-color: #103249;
-    color: white;
-    transform: rotateY(180deg);
-  }
+.flip-card:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.flip-card-front,
+.flip-card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.flip-card-front {
+  background-color: #f1f1f1;
+  color: #000;
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: #4caf50;
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-heading {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-details {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.card-details li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+  width: 120px;
+  text-align: right;
+  color: #fff;
+}
+
+.card-details li:last-child {
+  margin-bottom: 0;
+}
+
+.card-details li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  color: #fff;
+}
+
+/* Add any additional styles you need */

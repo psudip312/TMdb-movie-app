@@ -2,10 +2,13 @@ import React from "react";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 const Card = ({ movie }) => {
-  // console.log({ movie });
+  console.log(movie.id)
   const navigate=useNavigate();
+  const handleCardClick = () => {
+    navigate(`/Showsdetails/${movie.id}`);
+  };
   return (
-    <div className="cardd" onClick={() => navigate('/Showsdetails/:id')}>
+    <div className="cardd"  onClick={handleCardClick}>
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
@@ -17,16 +20,27 @@ const Card = ({ movie }) => {
             
             </div>
           </div>
-          <div class="flip-card-back">
-            <h1>{movie.name}</h1>
-            <ul>
-              <li>Title: {movie.name}</li>
-              <li>Original Name: {movie.original_name}</li>
-              <li>Original Language: {movie.original_language}</li>
-              <li>Overview: {movie.overview}</li>
-              <li>First Air Date: {movie.first_air_date}</li>
-            </ul>
-          </div>
+          <div className="flip-card-back">
+          <h1 className="card-heading">{movie.name}</h1>
+          <ul className="card-details">
+            <li>
+              <span className="detail-label">Title:</span> {movie.name}
+            </li>
+            <li>
+              <span className="detail-label">Original Name:</span> {movie.original_name}
+            </li>
+            <li>
+              <span className="detail-label">Original Language:</span> {movie.original_language}
+            </li>
+            <li>
+              <span className="detail-label">Overview:</span> {movie.overview}
+            </li>
+            <li>
+              <span className="detail-label">First Air Date:</span> {movie.first_air_date}
+            </li>
+          </ul>
+        </div>
+        
         </div>
       </div>
     </div>

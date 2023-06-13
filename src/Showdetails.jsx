@@ -1,28 +1,41 @@
-import React from 'react';
-import './Showdetails.css'; // Assuming you have a separate CSS file for styling
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import MyComponent from './MyComponent';
+import { data } from 'autoprefixer';
 
-const Showsdetails = ({ movie }) => {
-  const { title, genre, overview, posterUrl, backgroundImageUrl } = movie;
+const Showdetails = () => {
+  const { id } = useParams();
 
+  const [detail,setdetail]=useState();
+
+  console.log("co",detail)
+
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://api.themoviedb.org/3/movie/${id}`;
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTBiOTYyNjU1ZGIwN2M0ZTRjYzk0MWVhZWJjNjY3YiIsInN1YiI6IjY0N2Y0MDI5Y2FlZjJkMDExOWMxNzVlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BfGk8WFXvkIVAapvn8Nnzks4hwXBe_aTZXFxNx_fW4Q',
+        },
+      };
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+       setdetail(data)
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchData();
+  }, [id]);
   return (
-    <>
-    <div className="movie-details">
-    <div className="movie-picture">
-      <img src={posterUrl} alt={title} />
+    <div>
+    <MyComponent data={detail}/>
     </div>
-    <div className="movie-info">
-      <div
-        className="background-image"
-        style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      ></div>
-      <h2 className="movie-title">{title}</h2>
-      <p className="movie-genre">{genre}</p>
-      <p className="movie-overview">{overview}</p>
-    </div>
-  </div>
-    </>
-   
   );
 };
-
-export default Showsdetails;
+export default Showdetails;

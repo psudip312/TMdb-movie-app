@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './TrendingTVShows.css'
 import Card from './components/Card';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams} from 'react-router-dom';
 function TrendingTVShows({ sortOrder, searchQuery }) {
   const [shows, setShows] = useState([]);
   const [filteredShows, setFilteredShows] = useState([]);
@@ -18,7 +18,7 @@ function TrendingTVShows({ sortOrder, searchQuery }) {
         }
       };
       try {
-        const response = await fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', options);
+        const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options);
         const data = await response.json();
         setShows(data.results);
       } catch (error) {
@@ -31,16 +31,16 @@ function TrendingTVShows({ sortOrder, searchQuery }) {
   useEffect(() => {
     const updatedSortedShows = shows?.sort((a, b) => {
       if (sortOrder === 'asc') {
-        return a.name.localeCompare(b.name);
+        return a.title.localeCompare(ba.title);
       } else if (sortOrder === 'desc') {
-        return b.name.localeCompare(a.name);
+        return ba.title.localeCompare(a.title);
       }
       return 0;
     });
     setFilteredShows(updatedSortedShows);
   }, [sortOrder, shows]);
   useEffect(() => {
-    const filteredData = shows.filter((show) => show.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const filteredData = shows.filter((show) => show.title.toLowerCase().includes(searchQuery.toLowerCase()));
     setFilteredShows(filteredData);
   }, [searchQuery, shows]);
   return (
