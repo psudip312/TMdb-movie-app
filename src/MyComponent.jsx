@@ -2,11 +2,13 @@ import React from "react";
 import "./MyComponent.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-
 import { useState, useEffect } from "react";
 import Review from "./Review";
+import ModelDesign from "./modal/Modal";
 const MyComponent = ({ data }) => {
+  const { id } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
+  const [buttonopen,setbuttonopen]=useState(false);
   const [reviews, setReviews] = useState([]);
   const [showReview, setShowReview] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
@@ -14,10 +16,25 @@ const MyComponent = ({ data }) => {
   const handleCardClick = (recommendationId) => {
     navigate(`/Showsdetails/${recommendationId}`);
   };
-  const { id } = useParams();
   console.log("idinmycomponent", id);
   console.log("mycomponent data received", { data });
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
+  console.log("hel",isOpen)
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleButtonclick=()=>{
+setbuttonopen(true);
+
+  }
+  const closebutton = () => {
+    setbuttonopen(false);
+  };
   const backgroundStyle = {
     backgroundImage: `url(https://image.tmdb.org/t/p/w500${data?.backdrop_path})`,
   };
@@ -52,7 +69,6 @@ const MyComponent = ({ data }) => {
 
   // fetch to retreive recommendation 
 
-
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
@@ -81,7 +97,8 @@ const MyComponent = ({ data }) => {
   return (
     <>
       <div className="main-container" style={backgroundStyle}>
-        <div className="pop-image-container">
+        <div className="pop-image-container" onClick={openModal}>
+  
           <img
             src={`https://image.tmdb.org/t/p/w500${data?.poster_path}`}
             alt=""
@@ -119,8 +136,11 @@ const MyComponent = ({ data }) => {
         ))}
       </div>
     </div>
+    <ModelDesign isOpen={isOpen} closemodel={closeModal}>
+    <h1>hello</h1>
+    <h1>hello</h1>
+    </ModelDesign>
     </>
   );
 };
-
 export default MyComponent;

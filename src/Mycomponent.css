@@ -8,9 +8,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  z-index:99;
 }
-
-.main-container::before {
+/* 
+.main-container: {
   content: "";
   position: absolute;
   top: 0;
@@ -18,7 +19,7 @@
   right: 0;
   bottom: 0;
   opacity: 0.2;
-}
+} */
 
 .content-container {
   margin-left: 20px;
@@ -78,4 +79,11 @@
 .recommendation p {
   margin-top: 10px;
   text-align: center;
+}
+.recommendation {
+  cursor: pointer;
+}
+
+.recommendation:hover {
+  opacity: 0.8;
 }

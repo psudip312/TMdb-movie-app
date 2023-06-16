@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TrendingTVShows from "./TrendingTVShows";
 import Routing from "./Routing";
 import axios from "axios";
+import { Navbar } from "react-bootstrap";
 const App = () => {
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +26,7 @@ const App = () => {
   }, []);
   return (
 <>
-// <Routing/>
+<Routing/>
 </>
   );
 };
