@@ -8,6 +8,7 @@ function TrendingTVShows({ sortOrder, searchQuery }) {
   const navigate =useNavigate();
 
   console.log("tvshowskodetails",shows)
+
   useEffect(() => {
     const fetchData = async () => {
       const options = {
@@ -28,21 +29,24 @@ function TrendingTVShows({ sortOrder, searchQuery }) {
     };
     fetchData();
   }, []);
+
   useEffect(() => {
     const updatedSortedShows = shows?.sort((a, b) => {
       if (sortOrder === 'asc') {
-        return a.title.localeCompare(ba.title);
+        return a.title.localeCompare(b.title);
       } else if (sortOrder === 'desc') {
-        return ba.title.localeCompare(a.title);
+        return b.title.localeCompare(a.title);
       }
       return 0;
     });
     setFilteredShows(updatedSortedShows);
   }, [sortOrder, shows]);
+
+  
   useEffect(() => {
     const filteredData = shows.filter((show) => show.title.toLowerCase().includes(searchQuery.toLowerCase()));
     setFilteredShows(filteredData);
-  }, [searchQuery, shows]);
+  }, [searchQuery,shows]);
   return (
     <div>
     <h1 className="heading">Trending TV Shows</h1>

@@ -8,7 +8,6 @@ import ModelDesign from "./modal/Modal";
 const MyComponent = ({ data }) => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [buttonopen,setbuttonopen]=useState(false);
   const [reviews, setReviews] = useState([]);
   const [showReview, setShowReview] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
@@ -27,21 +26,13 @@ const MyComponent = ({ data }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-  const handleButtonclick=()=>{
-setbuttonopen(true);
-
-  }
-  const closebutton = () => {
-    setbuttonopen(false);
-  };
   const backgroundStyle = {
     backgroundImage: `url(https://image.tmdb.org/t/p/w500${data?.backdrop_path})`,
   };
   const handleClick = () => {
-    setShowReview(true);
+    setShowReview((prevState) => !prevState); // Toggle the showReview state
   };
-
+  
   // fetch to retrieve movies review
   useEffect(() => {
     const fetchMovieReviews = async () => {
@@ -110,9 +101,9 @@ setbuttonopen(true);
           <p>{data?.overview}</p>
         </div>
       </div>
-      <button onClick={handleClick}>
-        <h2>Show Reviews:</h2>
-      </button>
+      <button className="show-reviews-button" onClick={handleClick}>
+      <h2>{showReview ? "Hide Reviews" : "Show Reviews"}</h2>
+    </button>
       {showReview && (
         <div className="reviews-container">
           {reviews.map((review) => (

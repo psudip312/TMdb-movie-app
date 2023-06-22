@@ -1,0 +1,5 @@
+.moviepage{
+    display:flex;
+flex-wrap:wrap;
+top:30px;
+}

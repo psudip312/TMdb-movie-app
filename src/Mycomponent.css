@@ -87,3 +87,21 @@
 .recommendation:hover {
   opacity: 0.8;
 }
+.show-reviews-button {
+  background-color: black; /* Set the background color */
+  border: none; /* Remove border */
+  color: white; /* Set text color */
+  padding: 10px 20px; /* Add some padding */
+  text-align: center; /* Center align the text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Display as inline block */
+  font-size: 16px; /* Set font size */
+  transition-duration: 0.4s; /* Add transition effect */
+  cursor: pointer; /* Add cursor pointer */
+  
+  border-radius: 4px; /* Add border radius */
+}
+
+.show-reviews-button:hover {
+  background-color: #45a049; /* Change background color on hover */
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TrendingTVShows from "./TrendingTVShows";
 import Navbar from "./Navbar";
 import './Home.css'
+import { useEffect } from "react";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const Home
@@ -16,9 +17,10 @@ const handleSortOrder = (order) => {
 const toggleSortDropdown = () => {
   setSortDropdownOpen(!isSortDropdownOpen);
 };
+
   return (
     <div>
-    <Navbar/>
+    <Navbar />
     <div className="search-container">
     <input
       type="text"
